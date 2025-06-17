@@ -1,3 +1,17 @@
 [toolchain]
-channel = "1.72.0"
+channel = "1.78.0"
 components = ["rustfmt", "clippy"]
+
+[dependencies]
+mesh-sieve     = { path = "home/tea/mesh-sieve" }
+mesh-geometry  = { path = "home/tea/mesh-geometry" }
+kryst          = { path = "home/tea/krylovkit" }
+
+[features]
+default = ["hydrostatic", "explicit"]
+# feature flags to gate equation sets & steppers
+hydrostatic       = []
+nonhydrostatic    = []
+explicit          = []
+semi-implicit     = []
+fully-implicit    = []

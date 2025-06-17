@@ -3,5 +3,37 @@
 version = 4
 
 [[package]]
-name = "hydro-kernel"
+name = "advection"
+version = "0.1.0"
+
+[[package]]
+name = "boundary-conditions"
+version = "0.1.0"
+
+[[package]]
+name = "diagnostics"
+version = "0.1.0"
+
+[[package]]
+name = "driver"
+version = "0.1.0"
+
+[[package]]
+name = "equations"
+version = "0.1.0"
+
+[[package]]
+name = "kernel-core"
+version = "0.1.0"
+
+[[package]]
+name = "pressure-solver"
+version = "0.1.0"
+
+[[package]]
+name = "time-integration"
+version = "0.1.0"
+
+[[package]]
+name = "vertical-physics"
 version = "0.1.0"

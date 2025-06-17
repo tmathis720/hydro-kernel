@@ -1,8 +1,3 @@
-[dependencies]
-mesh-sieve     = { path = "home/tea/mesh-sieve" }
-mesh-geometry  = { path = "home/tea/mesh-geometry" }
-kryst          = { path = "home/tea/krylovkit" }
-
 [workspace]
 members = [
   "crates/kernel-core",
@@ -16,11 +11,4 @@ members = [
   "crates/driver",
 ]
 
-[features]
-default = ["hydrostatic", "explicit"]
-# feature flags to gate equation sets & steppers
-hydrostatic       = []
-nonhydrostatic    = []
-explicit          = []
-semi-implicit     = []
-fully-implicit    = []
+
