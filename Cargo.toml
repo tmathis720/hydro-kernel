@@ -1,6 +1,26 @@
-[package]
-name = "hydro-kernel"
-version = "0.1.0"
-edition = "2024"
-
 [dependencies]
+mesh-sieve     = { path = "home/tea/mesh-sieve" }
+mesh-geometry  = { path = "home/tea/mesh-geometry" }
+kryst          = { path = "home/tea/krylovkit" }
+
+[workspace]
+members = [
+  "crates/kernel-core",
+  "crates/equations",
+  "crates/time-integration",
+  "crates/advection",
+  "crates/pressure-solver",
+  "crates/vertical-physics",
+  "crates/boundary-conditions",
+  "crates/diagnostics",
+  "crates/driver",
+]
+
+[features]
+default = ["hydrostatic", "explicit"]
+# feature flags to gate equation sets & steppers
+hydrostatic       = []
+nonhydrostatic    = []
+explicit          = []
+semi-implicit     = []
+fully-implicit    = []
