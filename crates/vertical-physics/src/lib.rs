@@ -1,3 +1,7 @@
+pub fn hello() {
+    println!("{} loaded", env!("CARGO_PKG_NAME"));
+}
+
 pub fn add(left: usize, right: usize) -> usize {
     left + right
 }
