@@ -1,3 +1,15 @@
+cargo-features = ["edition2024"]
+
+[package]
+name = "hydro-kernel"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+mesh-sieve     = { path = "../sieve-rs" }
+mesh-geometry  = { path = "../mesh-geometry/mesh-geometry" }
+kryst          = { path = "../krylovkit" }
+
 [workspace]
 members = [
   "crates/kernel-core",

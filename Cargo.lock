@@ -23,6 +23,10 @@ name = "equations"
 version = "0.1.0"
 
 [[package]]
+name = "hydro-kernel"
+version = "0.1.0"
+
+[[package]]
 name = "kernel-core"
 version = "0.1.0"
 

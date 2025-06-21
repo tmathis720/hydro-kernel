@@ -6,7 +6,7 @@ pub struct GmshParser;
 
 impl GmshParser {
     /// Load the mesh from a Gmsh file and build topology using mesh-sieve
-    pub fn from_gmsh_file(file_path: &str) -> Result<Mesh, io::Error> {
+    pub fn from_gmsh_file(file_path: &str) -> Result<InMemorySieve, io::Error> {
         let file = File::open(file_path)?;
         let reader = BufReader::new(file);
 
@@ -54,7 +54,6 @@ impl GmshParser {
             // Parse individual nodes
             if in_nodes_section && current_node_line <= node_count {
                 let (vertex_id, coords) = Self::parse_node(&line)?;
-                mesh.set_vertex_coordinates(vertex_id, coords).unwrap();
                 sieve.add_cap_point(vertex_id); // Register as a cap point (vertex)
                 current_node_line += 1;
             }
@@ -62,7 +61,6 @@ impl GmshParser {
             // Parse individual elements
             if in_elements_section && current_element_line <= element_count {
                 if let Some((element_id, node_ids)) = Self::parse_element(&line)? {
-                    mesh.add_entity(MeshEntity::Cell(element_id)).unwrap();
                     sieve.add_base_point(element_id); // Register as a base point (cell)
                     for &node_id in &node_ids {
                         sieve.add_arrow(element_id, node_id, ()); // Cell → Vertex incidence
@@ -74,7 +72,7 @@ impl GmshParser {
 
         // Optionally, attach the sieve to the mesh or return both
         // mesh.set_topology(sieve); // If mesh supports this
-        Ok(mesh)
+        Ok(sieve)
     }
 
     /// Parse a single node from a line in the Gmsh file
